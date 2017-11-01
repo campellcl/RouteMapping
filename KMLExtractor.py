@@ -2,6 +2,7 @@
 KMLExtractor.py
 """
 # from fastkml import kml
+import polyline
 import re
 import googlemaps
 from datetime import datetime
@@ -14,14 +15,6 @@ __author__ = 'Chris Campell'
 __version__ = "9/29/2017"
 
 ELEVATION_BASE_URL = 'https://maps.googleapis.com/maps/api/elevation/json'
-
-def convert_path_to_polyline(path):
-    for lat, lon in path:
-        rounded_lat = np.round(lat*1e5)
-        # binary_lat = bin(rounded_lat)
-        twos_comp_lat = ~rounded_lat
-        # TODO: Add +1 to the above?
-
 
 def chunks(l, n):
     """
@@ -54,7 +47,7 @@ def get_elevation_data(lat_lon_coords, **elvtn_args):
             'samples': str(1)
         })
         # Build the request url:
-        url = ELEVATION_BASE_URL + '?locations=' + path_string + '&key=' + client_key
+        url = ELEVATION_BASE_URL + '?locations=enc:' + polyline.encode(chunk, 5) + '&key=' + client_key
         response = simplejson.load(request.urlopen(url=url))
         elevation_results = []
         for resultset in response['results']:
@@ -75,8 +68,8 @@ if __name__ == '__main__':
     lat_lon_coords = []
     for line in no_spaces:
         if regex.match(line):
-            lat = line.split(',')[0]
-            lon = line.split(',')[1]
+            lon = line.split(',')[0]
+            lat = line.split(',')[1]
             lat_lon_coords.append((float(lat), float(lon)))
     main(lat_lon_coords)
 
