@@ -7614,33 +7614,6 @@
           </coordinates>
         </LineString>
       </Placemark>
-      <Placemark>
-        <name>13614 Station Rd, Brecksville, OH 44141, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -81.5877516,41.3182288,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>1000 Carillon Blvd, Dayton, OH 45409, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -84.1988533,39.7300647,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>101-199 Nicholas St, Vincennes, IN 47591, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -87.5366787,38.6779509,0
-          </coordinates>
-        </Point>
-      </Placemark>
     </Folder>
     <Folder>
       <name>Stage 2: Aug 1 - 2</name>
@@ -15301,33 +15274,6 @@
             -93.41484,37.13781,0
           </coordinates>
         </LineString>
-      </Placemark>
-      <Placemark>
-        <name>101-199 Nicholas St, Vincennes, IN 47591, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -87.5366787,38.6779509,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name><![CDATA[Grant's Trail, St. Louis, MO 63123, USA]]></name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -90.3521444,38.5504584,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Repmo Dr, Brookline, MO 65619, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -93.4148396,37.1378102,0
-          </coordinates>
-        </Point>
       </Placemark>
     </Folder>
     <Folder>
@@ -23935,42 +23881,6 @@
           </coordinates>
         </LineString>
       </Placemark>
-      <Placemark>
-        <name>Wilson Cr Battlefield Nat Park, Brookline, MO 65619, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -93.419019,37.1155331,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>1500-1698 SE Jefferson St, Topeka, KS 66607, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -95.67338,39.0372867,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>24382-24502 SW 75th Rd, Beatrice, NE 68310, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -96.8223279,40.2851963,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Old Oregon Trail, Gering, NE 69341, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -103.7079034,41.8284697,0
-          </coordinates>
-        </Point>
-      </Placemark>
     </Folder>
     <Folder>
       <name>Stage 4: Aug 6</name>
@@ -26189,24 +26099,6 @@
             -103.47872,43.55646,0
           </coordinates>
         </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Old Oregon Trail, Gering, NE 69341, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -103.7079035,41.8284697,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Hot Springs, SD 57747, USA</name>
-        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -103.4787154,43.5564596,0
-          </coordinates>
-        </Point>
       </Placemark>
     </Folder>
   </Document>
