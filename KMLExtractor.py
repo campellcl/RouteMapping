@@ -86,9 +86,6 @@ def main(lat_lon_coords):
     else:
         df_route = get_elevation_data(lat_lon_coords)
         df_route.to_pickle('df_route.pkl')
-    # Calculate distance and append column.
-    # (lat_i, lon_i)
-    vincenty_distances = []
     # TODO: https://stackoverflow.com/questions/23151246/iterrows-pandas-get-next-rows-value
     # TODO: Create new df with start_lat, start_lon and do next_lat, next_lon in a single row.
     #   Then apply vincenty func. map to each row.
