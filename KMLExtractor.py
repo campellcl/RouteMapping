@@ -20,6 +20,7 @@ __version__ = "9/29/2017"
 
 ELEVATION_BASE_URL = 'https://maps.googleapis.com/maps/api/elevation/json'
 
+
 def chunks(l, n):
     """
     chunks: Breaks the specified list into slices of size 'n'.
@@ -30,6 +31,7 @@ def chunks(l, n):
     """Yield successive n-sized chunks from l."""
     for i in range(0, len(l), n):
         yield l[i:i + n]
+
 
 def get_elevation_data(lat_lon_coords, **elvtn_args):
     df_route = pd.DataFrame(columns=['Lat','Lon','Elv'])
@@ -74,21 +76,13 @@ def vincenty_df_series(series):
     vincenty_df_series: Wrapper for geopy's vincenty distance function; computes the vincenty distance on a pd.Series
         object.
     :param series: The dataframe series for which vincenty is to be applied too.
-    :return:
+    :return vincenty: The result of applying the vincenty distance function to the provided dataframe series.
     """
     return vincenty(series[1], series[0]).meters
 
 
-def main(lat_lon_coords):
-    route = Path('df_route.pkl')
-    if route.is_file():
-        df_route = pd.read_pickle(str(route))
-    else:
-        df_route = get_elevation_data(lat_lon_coords)
-        df_route.to_pickle('df_route.pkl')
-    # TODO: https://stackoverflow.com/questions/23151246/iterrows-pandas-get-next-rows-value
-    # TODO: Create new df with start_lat, start_lon and do next_lat, next_lon in a single row.
-    #   Then apply vincenty func. map to each row.
+def get_vincenty_distance(df_route):
+    # https://stackoverflow.com/questions/23151246/iterrows-pandas-get-next-rows-value
     lat_lon_df = df_route[['Lat','Lon']].join(df_route[['Lat','Lon']].shift(), how='left', lsuffix='_left', rsuffix='_right')
     # Zip the original columns into a tuple (lat, lon)
     lat_lon_df['LatLon_Left'] = list(zip(lat_lon_df.Lat_left, lat_lon_df.Lon_left))
@@ -102,7 +96,52 @@ def main(lat_lon_coords):
     lat_lon_df = lat_lon_df.iloc[1:]
     # Apply vincenty(LatLon_Right, LatLon_Left).meters to each row:
     lat_lon_df['vincenty_dist_meters'] = lat_lon_df.apply(vincenty_df_series, axis=1)
+    return lat_lon_df['vincenty_dist_meters']
+
+
+def get_elevation_difference(df_route):
+    """
+    get_elevation_difference: Computes the difference in elevation (pairwise) for each coordinate in the provided
+        dataframe.
+    :param df_route: The dataframe containing route statistics.
+    :return delta_elevation: The difference (pairwise) between every coordinates elevation in the provided dataframe.
+    """
+    # The first entry is not a number.
+    delta_elevation = [np.NaN]
+    # Extract the elevation data as a pd.Series object:
+    elevation_data = df_route['Elv']
+    # Perform a pairwise iteration of elements using the zip function:
+    for current_ele, next_ele in zip(elevation_data.data, elevation_data.data[1:]):
+        # Calculate the difference between each entry in the series:
+        delta_elevation.append(next_ele - current_ele)
+    # Return the list of elevation differences:
+    return delta_elevation
+
+def main(lat_lon_coords):
+    route = Path('df_route.pkl')
+    if route.is_file():
+        df_route = pd.read_pickle(str(route))
+    else:
+        df_route = get_elevation_data(lat_lon_coords)
+        # Compute a list of the pairwise vincenty distance between each coordinate pair:
+        vincenty_dist = get_vincenty_distance(df_route=df_route)
+        # Convert the list to a series:
+        vincenty_dist_series = pd.Series(vincenty_dist)
+        # Append it to the dataframe:
+        df_route['Vincenty_dist'] = vincenty_dist_series
+        # Compute the pairwise difference in elevation between each coordinate pair:
+        delta_elevation = get_elevation_difference(df_route=df_route)
+        # Convert the list to a series:
+        delta_elevation_series = pd.Series(delta_elevation)
+        # Append it to the dataframe:
+        df_route['Elv_diff'] = delta_elevation_series
+        # Pickle the dataframe and save it to the hard drive:
+        df_route.to_pickle('df_route.pkl')
+    # Compute the gradient between each coordinate pair:
+    # gradient = get_gradient(df_route=df_route)
+    
     pass
+
 
 if __name__ == '__main__':
     # Open KML and extract Lat-lon coords:
