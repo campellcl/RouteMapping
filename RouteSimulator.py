@@ -77,9 +77,9 @@ def main(df_route, n, nb, E, W, Crr1, Crr2, N, P, Cd, A, Na, g, v):
 
     ax2 = ax1.twinx()
     ax2.plot(accumulated_vincenty_dist, df_route['Power_out'], 'g')
-    ax2.set_ylabel('Power Production (Kilowatts)', color='g')
+    ax2.set_ylabel('Power (kW)', color='g')
     ax2.tick_params('y', colors='g')
-    plt.title('Elevation Profile vs. Power Production')
+    plt.title('Elevation Profile & Net Power')
     plt.show()
 
     # Plot Accumulated total energy vs accumulated distance.
@@ -92,9 +92,9 @@ def main(df_route, n, nb, E, W, Crr1, Crr2, N, P, Cd, A, Na, g, v):
 
     ax2 = ax1.twinx()
     ax2.plot(accumulated_vincenty_dist, accumulated_power_out, 'g')
-    ax2.set_ylabel('Power Production (Kilowatt Hours)', color='g')
+    ax2.set_ylabel('Total Energy (kWh)', color='g')
     ax2.tick_params('y', colors='g')
-    plt.title('Elevation Profile vs. Power Production')
+    plt.title('Elevation Profile & Total Energy Consumption')
     plt.show()
     # TODO: Rewrite equation for power instead of energy.
 
