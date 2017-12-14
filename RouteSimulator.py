@@ -35,7 +35,7 @@ def main(df_route, n, nb, E, W, Crr1, Crr2, N, P, Cd, A, Na, g, v):
         if i != 0:
             # energy_req = (((W*Crr1)+((N*Crr2)*v)+((((.5*P)*Cd)*A)*(v**2)))*dist)+(W*elv)+(((Na*W)*(v**2))/(2*g))
             if dist != 0.0:
-                energy_req = (((((W*Crr1)+((N*Crr2)*v)+((((.5*P)*Cd)*A)*(v**2)))*dist)+(W*elv))/dist)
+                energy_req = ((((W*Crr1)+((N*Crr2)*v)+((((.5*P)*Cd)*A)*(v**2)))+(W*elv))/dist)
             else:
                 energy_req = 0.0
             # Convert Energy in Watt-Seconds (Joules) to KiloWatt-Hours:
@@ -67,7 +67,7 @@ def main(df_route, n, nb, E, W, Crr1, Crr2, N, P, Cd, A, Na, g, v):
     # plt.plot(accumulated_vincenty_dist, df_route['Power_out'])
     # plt.plot(accumulated_vincenty_dist, df_route['Energy_out'].data, 'r')
     plt.show()
-    plt.clf()
+    # plt.clf()
 
     fig, ax1 = plt.subplots()
     ax1.plot(accumulated_vincenty_dist, df_route['Elv'])
@@ -83,7 +83,7 @@ def main(df_route, n, nb, E, W, Crr1, Crr2, N, P, Cd, A, Na, g, v):
     plt.show()
 
     # Plot Accumulated total energy vs accumulated distance.
-    plt.clf()
+    # plt.clf()
     fig, ax1 = plt.subplots()
     ax1.plot(accumulated_vincenty_dist, df_route['Elv'])
     ax1.set_xlabel('Vincenty Distance (meters)')
