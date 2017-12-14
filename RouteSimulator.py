@@ -64,7 +64,7 @@ def main(df_route, n, nb, E, W, Crr1, Crr2, N, P, Cd, A, Na, g, v):
     plt.ylabel('Elevation (meters)')
     # plt.axis([0,30000,-60, 60])
     plt.plot(accumulated_vincenty_dist, df_route['Elv'].data)
-    plt.plot(accumulated_vincenty_dist, df_route['Power_out'])
+    # plt.plot(accumulated_vincenty_dist, df_route['Power_out'])
     # plt.plot(accumulated_vincenty_dist, df_route['Energy_out'].data, 'r')
     plt.show()
     plt.clf()
